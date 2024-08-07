@@ -1,0 +1,98 @@
+.wrapperWrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formWrapper {
+  box-shadow: 0 0 20px #78db9e;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  padding: 50px 35px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lucida Sans", Verdana, sans-serif;
+}
+
+.iconCreate {
+  background-color: #78db9e;
+  color: aliceblue;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  font-size: 30px;
+  border-radius: 50%;
+}
+
+.formHead {
+  font-size: 32px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.formLabelForInput {
+  color: #78db9e;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.labelCaptionForInput {
+  font-size: 14px;
+  font-weight: bolder;
+  padding-top: 15px;
+}
+
+.formInput {
+  font-size: 15px;
+  padding: 10px;
+}
+
+.formLabelForCheckBox {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.submitBtn {
+  background-color: #78db9e;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 15px 0;
+  margin: 5px 0;
+}
+
+.submitBtn:hover {
+  background-color: #52946b;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.wrapperForSingInRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 0 10px;
+}
+
+.singInBtn {
+  background: none;
+  border: none;
+  color: #78db9e;
+  font-size: inherit;
+}
+
+.singInBtn:hover {
+  color: #52946b;
+  cursor: pointer;
+  transition: 1s;
+}
