@@ -1,5 +1,7 @@
+import SingUpPage from "./pages/SingUpPage";
+
 function App() {
-  return <></>;
+  return <SingUpPage />;
 }
 
 export default App;
