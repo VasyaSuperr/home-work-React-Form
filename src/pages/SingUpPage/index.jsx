@@ -1,3 +1,5 @@
+import styles from "./SingUp.module.css";
+
 function SingUpPage() {
   return (
     <div>
