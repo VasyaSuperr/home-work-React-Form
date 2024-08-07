@@ -37,13 +37,14 @@
 }
 
 .formLabelForInput {
-  color: #78db9e;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 7px;
 }
 
 .labelCaptionForInput {
+  color: #78db9e;
   font-size: 14px;
   font-weight: bolder;
   padding-top: 15px;
@@ -52,6 +53,12 @@
 .formInput {
   font-size: 15px;
   padding: 10px;
+}
+
+.eyeForPassword {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .formLabelForCheckBox {
