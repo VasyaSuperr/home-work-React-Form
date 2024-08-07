@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./SingUp.module.css";
+import classNames from "classnames";
 
 function SingUpPage() {
   const [fullName, setFullName] = useState("");
@@ -7,6 +8,15 @@ function SingUpPage() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [statements, setStatements] = useState(false);
+
+  const SING_UP_FOR_REG_EXP = {
+    fullName:
+      /^[A-Z][a-z]{1,32}(-[A-Z][a-z]{1,32})? [A-Z][a-z]{1,32}(-[A-Z][a-z]{1,32})?$/,
+    email: /^\w+@[A-Za-z\d]+\.[A-Za-z\d]+$/,
+    password: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[\d]).{6,32}$/,
+    passwordConfirm:
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[\d]).{6,32}$/,
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -38,6 +48,33 @@ function SingUpPage() {
     setStatements(checked);
   };
 
+  const calcClassName = (name, value) => {
+    let isValueValid;
+
+    if (name === "passwordConfirm") {
+      isValueValid =
+        value === password && SING_UP_FOR_REG_EXP[name].test(value);
+    } else {
+      isValueValid = SING_UP_FOR_REG_EXP[name].test(value);
+    }
+
+    return classNames(styles.formInput, {
+      [styles.validInput]: isValueValid,
+      [styles.invalidInput]: !isValueValid,
+    });
+  };
+
+  const isSubmitBtnDisabled = () => {
+    return !(
+      SING_UP_FOR_REG_EXP.fullName.test(fullName) &&
+      SING_UP_FOR_REG_EXP.email.test(email) &&
+      SING_UP_FOR_REG_EXP.password.test(password) &&
+      SING_UP_FOR_REG_EXP.passwordConfirm.test(passwordConfirm) &&
+      statements &&
+      password === passwordConfirm
+    );
+  };
+
   return (
     <div className={styles.wrapperWrapper}>
       <div className={styles.formWrapper}>
@@ -47,7 +84,7 @@ function SingUpPage() {
           <label className={styles.formLabelForInput}>
             <span className={styles.labelCaptionForInput}>FULL NAME</span>
             <input
-              className={styles.formInput}
+              className={calcClassName("fullName", fullName)}
               type="text"
               name="user-fullName"
               value={fullName}
@@ -60,7 +97,7 @@ function SingUpPage() {
           <label className={styles.formLabelForInput}>
             <span className={styles.labelCaptionForInput}>EMAIL ADDRESS</span>
             <input
-              className={styles.formInput}
+              className={calcClassName("email", email)}
               type="email"
               name="user-email"
               value={email}
@@ -72,7 +109,7 @@ function SingUpPage() {
           <label className={styles.formLabelForInput}>
             <span className={styles.labelCaptionForInput}>PASSWORD</span>
             <input
-              className={styles.formInput}
+              className={calcClassName("password", password)}
               type="password"
               name="user-password"
               value={password}
@@ -89,7 +126,7 @@ function SingUpPage() {
               PASSWORD CONFIRMATION
             </span>
             <input
-              className={styles.formInput}
+              className={calcClassName("passwordConfirm", passwordConfirm)}
               type="password"
               name="user-password-confirmation"
               value={passwordConfirm}
@@ -111,7 +148,14 @@ function SingUpPage() {
             />
             <span>I Agree All Statements In Terms Of Service</span>
           </label>
-          <button className={styles.submitBtn} type="submit">
+          <button
+            className={classNames(styles.submitBtn, {
+              [styles.enabled]: !isSubmitBtnDisabled(),
+              [styles.disabled]: isSubmitBtnDisabled(),
+            })}
+            disabled={isSubmitBtnDisabled()}
+            type="submit"
+          >
             Sing Up
           </button>
           <div className={styles.wrapperForSingInRow}>

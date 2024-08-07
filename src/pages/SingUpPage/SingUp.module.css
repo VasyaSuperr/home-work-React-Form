@@ -68,8 +68,6 @@
 }
 
 .submitBtn {
-  background-color: #78db9e;
-  color: white;
   font-size: 16px;
   border: none;
   border-radius: 5px;
@@ -78,10 +76,20 @@
   margin: 5px 0;
 }
 
-.submitBtn:hover {
+.enabled {
+  background-color: #78db9e;
+  color: white;
+}
+
+.enabled:hover {
   background-color: #52946b;
   cursor: pointer;
   transition: 1s;
+}
+
+.disabled {
+  background-color: gray;
+  color: lightgrey;
 }
 
 .wrapperForSingInRow {
@@ -102,4 +110,16 @@
   color: #52946b;
   cursor: pointer;
   transition: 1s;
+}
+
+.validInput {
+  background-color: lightgreen;
+  border: 3px solid green;
+  border-radius: 5px;
+}
+
+.invalidInput {
+  background-color: lightcoral;
+  border: 3px solid red;
+  border-radius: 5px;
 }
