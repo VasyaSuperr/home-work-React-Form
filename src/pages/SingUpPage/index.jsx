@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./SingUp.module.css";
 import classNames from "classnames";
 
@@ -8,6 +8,8 @@ function SingUpPage() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [statements, setStatements] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordConfVisible, setIsPasswordConfVisible] = useState(false);
 
   const SING_UP_FOR_REG_EXP = {
     fullName:
@@ -26,6 +28,8 @@ function SingUpPage() {
     setPassword("");
     setPasswordConfirm("");
     setStatements(false);
+    setIsPasswordVisible(false);
+    setIsPasswordConfVisible(false);
   };
 
   const handleFullNameChange = ({ target: { value } }) => {
@@ -46,6 +50,14 @@ function SingUpPage() {
 
   const handleStatementsChange = ({ target: { checked } }) => {
     setStatements(checked);
+  };
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const togglePasswordConfVisibility = () => {
+    setIsPasswordConfVisible(!isPasswordConfVisible);
   };
 
   const calcClassName = (name, value) => {
@@ -110,15 +122,20 @@ function SingUpPage() {
             <span className={styles.labelCaptionForInput}>PASSWORD</span>
             <input
               className={calcClassName("password", password)}
-              type="password"
+              type={isPasswordVisible ? "text" : "password"}
               name="user-password"
               value={password}
               onChange={handlePasswordChange}
               placeholder="Password"
               required
             />
-            <span className={styles.eyeForPassword}>
-              <i className="fa-solid fa-eye-slash"></i>
+            <span
+              className={styles.eyeForPassword}
+              onClick={togglePasswordVisibility}
+            >
+              <i
+                className={isPasswordVisible ? "fa fa-eye" : "fa fa-eye-slash"}
+              ></i>
             </span>
           </label>
           <label className={styles.formLabelForInput}>
@@ -127,15 +144,22 @@ function SingUpPage() {
             </span>
             <input
               className={calcClassName("passwordConfirm", passwordConfirm)}
-              type="password"
+              type={isPasswordConfVisible ? "text" : "password"}
               name="user-password-confirmation"
               value={passwordConfirm}
               onChange={handlePasswordConfirmChange}
               placeholder="Password confirmation"
               required
             />
-            <span className={styles.eyeForPassword}>
-              <i className="fa-solid fa-eye-slash"></i>
+            <span
+              className={styles.eyeForPassword}
+              onClick={togglePasswordConfVisibility}
+            >
+              <i
+                className={
+                  isPasswordConfVisible ? "fa fa-eye" : "fa fa-eye-slash"
+                }
+              ></i>
             </span>
           </label>
           <label className={styles.formLabelForCheckBox}>
@@ -156,11 +180,11 @@ function SingUpPage() {
             disabled={isSubmitBtnDisabled()}
             type="submit"
           >
-            Sing Up
+            Sign Up
           </button>
           <div className={styles.wrapperForSingInRow}>
             <span>I'm already a member!</span>
-            <button className={styles.singInBtn}>Sing In</button>
+            <button className={styles.singInBtn}>Sign In</button>
           </div>
         </form>
       </div>

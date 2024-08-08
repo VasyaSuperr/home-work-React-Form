@@ -123,3 +123,23 @@
   border: 3px solid red;
   border-radius: 5px;
 }
+
+#spanForIconPassword {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#spanForIconPassword i {
+  font-size: 18px;
+  line-height: 1;
+  color: #333;
+  transition: color 0.3s ease-in-out;
+  margin-bottom: 20px;
+}
+
+#spanForIconPassword i:hover {
+  color: #000;
+}
